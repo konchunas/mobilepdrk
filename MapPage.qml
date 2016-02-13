@@ -37,10 +37,21 @@ Page
 
     Button
     {
+        id: add_claim_button
         text: qsTr("Add claim")
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: parent.height * 0.1
         onClicked: pageStack.push(wannabePage)
     }
+
+    Button
+    {
+        text: qsTr("Get claims")
+        anchors.bottom: add_claim_button.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: parent.height * 0.1
+        onClicked: pageStack.push(claimsPage)
+    }
+
 }

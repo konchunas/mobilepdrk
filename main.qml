@@ -26,6 +26,7 @@ ApplicationWindow
     }
 
     property alias wannabePage: rectangle
+    property alias claimsPage: claimsPageView
     property alias pageStack: mainStackView
 
     StackView
@@ -42,6 +43,10 @@ ApplicationWindow
         MapPage
         {
             id: mapPage
+        }
+        Claims
+        {
+            id: claimsPageView
         }
         Rectangle
         {

@@ -6,10 +6,19 @@ CONFIG += c++11
 
 SOURCES += main.cpp
 
-RESOURCES += qml.qrc
+RESOURCES +=
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
+
+DISTFILES += \
+    Claims.qml \
+    main.qml \
+    MapPage.qml \
+    js/requester.js \
+    NavigationBar.qml \
+    Page.qml \
+    SearchBar.qml

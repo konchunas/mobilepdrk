@@ -2,8 +2,13 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MapPage.qml</file>
+<<<<<<< Updated upstream
         <file>NavigationBar.qml</file>
         <file>Page.qml</file>
         <file>SearchBar.qml</file>
+=======
+        <file>js/requester.js</file>
+        <file>Claims.qml</file>
+>>>>>>> Stashed changes
     </qresource>
 </RCC>
