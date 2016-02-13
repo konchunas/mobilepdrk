@@ -3,6 +3,8 @@ import QtQuick.Controls 1.4
 
 import QtLocation 5.3
 
+import "qml_controls"
+
 Page
 {
     caption: "Map"
@@ -60,7 +62,7 @@ Page
 
     Button
     {
-        //style: pdrkButtonStyle
+        //style: PdrkButtonStyle {}
         text: qsTr("Get organizations")
         anchors.bottom: get_claims.top
         anchors.horizontalCenter: parent.horizontalCenter

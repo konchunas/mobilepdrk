@@ -70,10 +70,4 @@ ApplicationWindow
         }
     }
 
-    property alias pdrkButtonStyle: pdrkButtonStyle
-
-    PdrkButtonStyle
-    {
-        id: pdrkButtonStyle
-    }
 }

@@ -25,7 +25,6 @@ Page {
 
         delegate:AndoidListItem
         {
-            //text: title
             text_bottom: title_bottom
             miscData: orgID
 
@@ -37,33 +36,22 @@ Page {
         }
     }
 
-    function onOrgsReceiveOk (json) {
-        console.log("Super : " + json[org_json_name].address )
+    function onOrgsReceiveOk (json)
+    {
+        console.log( JSON.stringify(json) )
 
         orgs_model.clear()
 
-        var childs = json[org_json_name].childs
-        for (var item in childs)
+        for (var org in json)
         {
-            console.log("")
-            console.log("Property: " + item)
+            if (json[org].total_claims === 0) //TODO: do not hide int add claim state
+                continue
 
-            console.log("")
-            if (typeof childs[item].address !== "undefined") {
-                var addr = childs[item].address;
-                console.log("Addr: " + addr);
-
-                console.log("")
-                for (var org in childs[item].orgs) {
-                    console.log("Org: " + org);
-                    orgs_model.append({
-                        "title" : org,
-                        "title_bottom" : addr,
-                        "orgID": org
-                    })
-                }
-            }
-
+            console.log(JSON.stringify(json[org]))
+            orgs_model.append({
+                "title_bottom" : json[org].name,
+                "orgID": json[org].id
+            })
         }
     }
 
@@ -71,9 +59,8 @@ Page {
         console.log("Organizations: Error")
     }
 
-    function init(org_level_name) {
-        org_json_name = org_level_name || "root";
-        var url = "http://test.acts.pp.ua:8000/api/v1/get_polygons_tree/" + org_json_name + "/";
+    function init() {
+        var url = "http://192.168.1.180:8000/api/v1/organizations";
         Requester.request(url, onOrgsReceiveOk, onOrgsReceiveError);
     }
 }
