@@ -21,4 +21,5 @@ DISTFILES += \
     js/requester.js \
     NavigationBar.qml \
     Page.qml \
-    SearchBar.qml
+    SearchBar.qml \
+    qml_controls/AndoidListItem.qml

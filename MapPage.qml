@@ -51,7 +51,10 @@ Page
         anchors.bottom: add_claim_button.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: parent.height * 0.1
-        onClicked: pageStack.push(claimsPage)
+        onClicked: {
+            claimsPage.initClaims()
+            pageStack.push(claimsPage)
+        }
     }
 
 }
