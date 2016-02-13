@@ -47,6 +47,7 @@ Item {
     height: 55
 
     property alias text: textitem.text
+    property alias text_bottom: bottom_text_item.text
     signal clicked
 
     Rectangle {
@@ -55,14 +56,23 @@ Item {
         visible: mouse.pressed
     }
 
-    Text {
-        id: textitem
-        color: "black"
-        font.pixelSize: 24
-        text: modelData
+    Column {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: 30
+
+        Text {
+            id: textitem
+            color: "white"
+            font.pixelSize: 32
+        }
+
+        Text {
+            id: bottom_text_item
+            color: "gray"
+            font.pixelSize: 16
+            visible: text !== ""
+        }
     }
 
     /*Rectangle {
@@ -84,6 +94,5 @@ Item {
         id: mouse
         anchors.fill: parent
         onClicked: root.clicked()
-
     }
 }
