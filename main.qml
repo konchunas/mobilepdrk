@@ -1,7 +1,8 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
-//import QtQuick.Com
+
+import "qml_controls"
 
 ApplicationWindow
 {
@@ -67,5 +68,12 @@ ApplicationWindow
             id: rectangle
             color: "blue";
         }
+    }
+
+    property alias pdrkButtonStyle: pdrkButtonStyle
+
+    PdrkButtonStyle
+    {
+        id: pdrkButtonStyle
     }
 }

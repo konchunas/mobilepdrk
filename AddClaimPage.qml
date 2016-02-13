@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 
 import "qml_controls"
+import "js/requester.js" as Requester
 
 Page
 {
@@ -76,8 +77,27 @@ Page
             {
                 anchors.centerIn: parent
                 text: qsTr("Send claim")
-                //onClicked:
+                onClicked:
+                {
+                    Requester.postRequest("http://192.168.1.180:8000/api/v1/claims/",
+                                      onClaimsReceiveOk,
+                                      onClaimsReceiveError,
+                                      "{\"text\": \"hhhhh\", \"live\": false, \"organization\": 20, \"servant\": \"eeee\", \"claim_type\": 1 }")
+                }
+
+
+                function onClaimsReceiveOk (json)
+                {
+                    console.log("post is " + json.Responce)
+                }
+
+                function onClaimsReceiveError ()
+                {
+                    console.log("Claims: Error")
+                }
             }
         }
     }
+
+
 }

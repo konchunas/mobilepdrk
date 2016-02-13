@@ -48,6 +48,7 @@ Item {
 
     property alias text: textitem.text
     property alias text_bottom: bottom_text_item.text
+    property int miscData : -1
     signal clicked
 
     Rectangle {
@@ -69,7 +70,7 @@ Item {
 
         Text {
             id: bottom_text_item
-            color: "gray"
+            color: "lightgray"
             font.pixelSize: 16
             visible: text !== ""
         }

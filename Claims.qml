@@ -45,9 +45,10 @@ Page {
         console.log("Claims: Error")
     }
 
-    function init() {
+    function init(orgID) {
+        var orgIDStr = orgID === undefined ? "" : "?organization__id=" + orgID;
         Requester.request(
-                    "http://test.acts.pp.ua:8000/api/v1/claims/",
+                    "http://192.168.1.180:8000/api/v1/claims/" + orgIDStr,
                     onClaimsReceiveOk,
                     onClaimsReceiveError
         );

@@ -23,9 +23,17 @@ Page {
         anchors.fill: parent
         model: orgs_model
 
-        delegate: AndoidListItem {
-            text: title
+        delegate:AndoidListItem
+        {
+            //text: title
             text_bottom: title_bottom
+            miscData: orgID
+
+            onClicked:
+            {
+                claimsPage.init(orgID)
+                pageStack.push(claimsPage)
+            }
         }
     }
 
@@ -50,7 +58,8 @@ Page {
                     console.log("Org: " + org);
                     orgs_model.append({
                         "title" : org,
-                        "title_bottom" : addr
+                        "title_bottom" : addr,
+                        "orgID": org
                     })
                 }
             }

@@ -22,14 +22,18 @@ ToolBar
         {
             id: backButton
             text: "Back"
+            anchors.left: parent.left
+            anchors.top: parent.top
             onClicked: pageStack.pop()
         }
+    }
 
-        Label
-        {
-            id: titleLabel
-            color: "red"
-            text: title
-        }
+
+    Label
+    {
+        id: titleLabel
+        color: "red"
+        text: title
+        anchors.centerIn: parent
     }
 }

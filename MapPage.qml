@@ -27,10 +27,10 @@ Page
         anchors.fill: parent
 
         center {
-            latitude: -27
-            longitude: 153
+            latitude: 50.00777117005465
+            longitude: 36.25434728238018
         }
-        zoomLevel: 8.0
+        zoomLevel: 14.0
 
         gesture.enabled: true
     }
@@ -51,7 +51,8 @@ Page
         text: qsTr("Get claims")
         anchors.bottom: add_claim_button.top
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: {
+        onClicked:
+        {
             claimsPage.init()
             pageStack.push(claimsPage)
         }
@@ -59,10 +60,12 @@ Page
 
     Button
     {
+        //style: pdrkButtonStyle
         text: qsTr("Get organizations")
         anchors.bottom: get_claims.top
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: {
+        onClicked:
+        {
             organizationsPage.init("21citkyivs")
             pageStack.push(organizationsPage)
         }
