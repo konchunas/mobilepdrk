@@ -10,6 +10,21 @@ ApplicationWindow
     height: 480
     title: qsTr("PDRK")
 
+    toolBar: mainStackView.currentItem.caption === "Map" ? searchBar : navigationBar
+
+    NavigationBar
+    {
+        id: navigationBar
+        title: mainStackView.currentItem.caption
+        visible: mainStackView.currentItem.caption !== "Map"
+    }
+
+    SearchBar
+    {
+        id: searchBar
+        visible: mainStackView.currentItem.caption === "Map"
+    }
+
     property alias wannabePage: rectangle
     property alias pageStack: mainStackView
 
@@ -18,6 +33,12 @@ ApplicationWindow
         id: mainStackView
         anchors.fill: parent
         initialItem : mapPage
+
+        Keys.onReleased: if (event.key === Qt.Key_Back)
+                         {
+                             mainStackView.pop();
+                             event.accepted = true;
+                         }
         MapPage
         {
             id: mapPage

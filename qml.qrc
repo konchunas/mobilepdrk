@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MapPage.qml</file>
+        <file>NavigationBar.qml</file>
+        <file>Page.qml</file>
+        <file>SearchBar.qml</file>
     </qresource>
 </RCC>

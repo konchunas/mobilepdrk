@@ -3,8 +3,10 @@ import QtQuick.Controls 1.4
 
 import QtLocation 5.3
 
-Item
+Page
 {
+    caption: "Map"
+
     Plugin
     {
         id: osmPlugin
@@ -28,25 +30,14 @@ Item
             latitude: -27
             longitude: 153
         }
-        zoomLevel: map.minimumZoomLevel
+        zoomLevel: 8.0
 
         gesture.enabled: true
     }
 
-    Rectangle
-    {
-        id: searchBarBackground
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: parent.height * 0.1
-        //anchors.fill: parent
-        color: "black"
-    }
-
     Button
     {
-        text: "Add claim"
+        text: qsTr("Add claim")
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: parent.height * 0.1
