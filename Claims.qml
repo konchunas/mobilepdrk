@@ -9,18 +9,12 @@ Page {
     caption: qsTr("Claims")
 
     Rectangle {
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: parent.height * 0.1
+        anchors.fill: parent
         color: "green"
     }
 
     ListModel {
         id: claims_model
-        ListElement {
-            title : "ABC"
-        }
     }
 
     ListView {
@@ -30,14 +24,21 @@ Page {
 
         delegate: AndoidListItem {
             text: title
+            text_bottom: title_bottom
         }
     }
 
     function onClaimsReceiveOk (json) {
-        console.log("OK " + json)
+        var len = json.length
+        console.log("Received " + len + " claims.")
 
-        for (var i = 0; i < 5; i++)
-            claims_model.append({"title": "TEST "+i})
+        claims_model.clear()
+        for (var i = 0; i < len; i++) {
+            claims_model.append({
+                "title" : json[i].text,
+                "title_bottom" : json[i].servant
+            })
+        }
     }
 
     function onClaimsReceiveError () {

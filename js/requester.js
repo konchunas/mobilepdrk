@@ -16,9 +16,7 @@ function request(get_url, ok_cb, err_cb) {
 }
 
 function onRequestReady(response, ok_cb) {
-//    var arr = JSON.parse(response);
-//    var json_str = JSON.stringify(response);
-    ok_cb(response);
+    ok_cb(JSON.parse(response));
 }
 
 function onRequestError(err_cb) {
