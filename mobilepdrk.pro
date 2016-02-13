@@ -26,4 +26,5 @@ DISTFILES += \
     SettingsPage.qml \
     qml_controls/FullWidthLabel.qml \
     AddClaimPage.qml \
-    qml_controls/FullWidthTextInput.qml
+    qml_controls/FullWidthTextInput.qml \
+    Organizations.qml

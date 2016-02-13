@@ -26,6 +26,7 @@ ApplicationWindow
     }
 
     property alias claimsPage: claimsPageView
+    property alias organizationsPage: organizationssPageView
     property alias pageStack: mainStackView
     property alias settingsPage: settingsPage
     property alias addClaimPage: addClaimPage
@@ -57,7 +58,10 @@ ApplicationWindow
         {
             id: addClaimPage
         }
-
+        Organizations
+        {
+            id: organizationssPageView
+        }
         Rectangle
         {
             id: rectangle

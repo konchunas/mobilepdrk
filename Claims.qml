@@ -45,7 +45,7 @@ Page {
         console.log("Claims: Error")
     }
 
-    function initClaims() {
+    function init() {
         Requester.request(
                     "http://test.acts.pp.ua:8000/api/v1/claims/",
                     onClaimsReceiveOk,

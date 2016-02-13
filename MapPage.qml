@@ -47,13 +47,24 @@ Page
 
     Button
     {
+        id: get_claims
         text: qsTr("Get claims")
         anchors.bottom: add_claim_button.top
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: parent.height * 0.1
         onClicked: {
-            claimsPage.initClaims()
+            claimsPage.init()
             pageStack.push(claimsPage)
+        }
+    }
+
+    Button
+    {
+        text: qsTr("Get organizations")
+        anchors.bottom: get_claims.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        onClicked: {
+            organizationsPage.init("21citkyivs")
+            pageStack.push(organizationsPage)
         }
     }
 
