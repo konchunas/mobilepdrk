@@ -8,13 +8,13 @@ ToolBar
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right
-    height: parent.height * 0.1
+    height: rowLayout.height
 
-    RowLayout
+    Row
     {
-        //anchors.fill: parent
+        id: rowLayout
         //anchors.centerIn: parent
-        spacing: 3
+        //spacing: 3
         TextField
         {
             id: searchBox
@@ -31,6 +31,7 @@ ToolBar
         {
             id: settingsButton
             text: "S"
+            onClicked: mainStackView.push(settingsPage)
         }
 
     }

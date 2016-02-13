@@ -18,9 +18,6 @@ Page {
 
     ListModel {
         id: claims_model
-        ListElement {
-            title : "ABC"
-        }
     }
 
     ListView {

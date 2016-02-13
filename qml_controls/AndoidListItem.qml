@@ -44,7 +44,7 @@ import QtQuick 2.2
 Item {
     id: root
     width: parent.width
-    height: 88
+    height: 55
 
     property alias text: textitem.text
     signal clicked
@@ -57,28 +57,28 @@ Item {
 
     Text {
         id: textitem
-        color: "white"
-        font.pixelSize: 32
+        color: "black"
+        font.pixelSize: 24
         text: modelData
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: 30
     }
 
-    Rectangle {
+    /*Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.margins: 15
         height: 1
         color: "#424246"
-    }
+    }*/
 
-    Image {
+    /*Image {
         anchors.right: parent.right
         anchors.rightMargin: 20
         anchors.verticalCenter: parent.verticalCenter
         source: "../images/navigation_next_item.png"
-    }
+    }*/
 
     MouseArea {
         id: mouse

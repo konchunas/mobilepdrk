@@ -22,4 +22,8 @@ DISTFILES += \
     NavigationBar.qml \
     Page.qml \
     SearchBar.qml \
-    qml_controls/AndoidListItem.qml
+    qml_controls/AndoidListItem.qml \
+    SettingsPage.qml \
+    qml_controls/FullWidthLabel.qml \
+    AddClaimPage.qml \
+    qml_controls/FullWidthTextInput.qml

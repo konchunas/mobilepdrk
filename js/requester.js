@@ -1,8 +1,9 @@
 .pragma library
 
-function request(get_url, ok_cb, err_cb) {
+function request(get_url, ok_cb, err_cb, type_) {
     var xmlhttp = new XMLHttpRequest();
     var url = get_url;
+    var type = type_ || "GET";
 
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
@@ -11,7 +12,7 @@ function request(get_url, ok_cb, err_cb) {
         // TODO: implement error callback
     }
 
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open(type, url, true);
     xmlhttp.send();
 }
 

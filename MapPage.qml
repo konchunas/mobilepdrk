@@ -42,7 +42,7 @@ Page
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: parent.height * 0.1
-        onClicked: pageStack.push(wannabePage)
+        onClicked: pageStack.push(addClaimPage)
     }
 
     Button

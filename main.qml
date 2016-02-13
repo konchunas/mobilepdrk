@@ -25,9 +25,10 @@ ApplicationWindow
         visible: mainStackView.currentItem.caption === "Map"
     }
 
-    property alias wannabePage: rectangle
     property alias claimsPage: claimsPageView
     property alias pageStack: mainStackView
+    property alias settingsPage: settingsPage
+    property alias addClaimPage: addClaimPage
 
     StackView
     {
@@ -40,6 +41,10 @@ ApplicationWindow
                              mainStackView.pop();
                              event.accepted = true;
                          }
+        SettingsPage
+        {
+            id: settingsPage
+        }
         MapPage
         {
             id: mapPage
@@ -48,6 +53,11 @@ ApplicationWindow
         {
             id: claimsPageView
         }
+        AddClaimPage
+        {
+            id: addClaimPage
+        }
+
         Rectangle
         {
             id: rectangle

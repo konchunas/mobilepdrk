@@ -8,12 +8,13 @@ ToolBar
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right
-    height: parent.height * 0.1
+    height: rowLayout.height
 
     property string title
 
     RowLayout
     {
+        id: rowLayout
         //anchors.centerIn: parent
         spacing: 5
 
