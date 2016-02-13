@@ -79,16 +79,26 @@ Page
                 text: qsTr("Send claim")
                 onClicked:
                 {
+                    var obj = {
+                        "text" : claimText.text,
+                        "live" : false,
+                        "organization" : organizationTextInput.text,
+                        "servant" : servantTextInput.text,
+                        "claim_type" : 1 // TODO: add other claim types
+                    }
+                    var json_str = JSON.stringify(obj)
                     Requester.postRequest("http://192.168.1.180:8000/api/v1/claims/",
                                       onClaimsReceiveOk,
                                       onClaimsReceiveError,
-                                      "{\"text\": \"hhhhh\", \"live\": false, \"organization\": 20, \"servant\": \"eeee\", \"claim_type\": 1 }")
+                                      json_str)
                 }
 
 
                 function onClaimsReceiveOk (json)
                 {
                     console.log("post is " + json.Responce)
+                    dialogAddClaimOK.show(qsTr("Sent"), qsTr("Your claim was succesfuly sent."))
+                    mainStackView.pop()
                 }
 
                 function onClaimsReceiveError ()

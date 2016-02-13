@@ -31,6 +31,7 @@ ApplicationWindow
     property alias pageStack: mainStackView
     property alias settingsPage: settingsPage
     property alias addClaimPage: addClaimPage
+    property alias dialogAddClaimOK: dialog_add_claim_ok
 
     StackView
     {
@@ -70,4 +71,7 @@ ApplicationWindow
         }
     }
 
+    CustomDialog {
+        id: dialog_add_claim_ok
+    }
 }

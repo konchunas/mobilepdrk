@@ -27,10 +27,9 @@ function postRequest(get_url, ok_cb, err_cb, params)
     xmlhttp.setRequestHeader("Content-length", params.length);
     xmlhttp.setRequestHeader("Connection", "close");
 
-
     xmlhttp.onreadystatechange=function()
     {
-        if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
+        if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 201) {
             onRequestReady(xmlhttp.responseText, ok_cb);
         }
         // TODO: implement error callback
@@ -38,8 +37,6 @@ function postRequest(get_url, ok_cb, err_cb, params)
 
     xmlhttp.send(params);
 }
-
-
 
 function onRequestReady(response, ok_cb) {
     ok_cb(JSON.parse(response));

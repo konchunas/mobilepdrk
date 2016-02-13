@@ -5,6 +5,8 @@ Item
     anchors.left: parent.left
     anchors.right: parent.right
 
+    property alias text: text_input.text
+
     Rectangle
     {
         anchors.fill: parent
@@ -13,6 +15,7 @@ Item
 
     TextInput
     {
+        id: text_input
         anchors.fill: parent
     }
 }

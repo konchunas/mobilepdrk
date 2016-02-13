@@ -28,4 +28,5 @@ DISTFILES += \
     AddClaimPage.qml \
     qml_controls/FullWidthTextInput.qml \
     Organizations.qml \
-    qml_controls/PdrkButtonStyle.qml
+    qml_controls/PdrkButtonStyle.qml \
+    qml_controls/CustomDialog.qml
