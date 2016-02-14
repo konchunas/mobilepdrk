@@ -16,11 +16,10 @@ Page
     Rectangle
     {
         anchors.fill: parent
-        color: "purple"
     }
 
     function organizationPicked(org_id, org_name) {
-        org_button.text = org_name;
+        org_button.text_bottom = org_name;
 
         orgPicked = true
         orgId = org_id
@@ -38,11 +37,11 @@ Page
 
         AndoidListItem {
             id: org_button
-            text: qsTr("Choose organization")
+            text_bottom: qsTr("Choose organization")
             onClicked: {
                 var component = Qt.createComponent("Organizations.qml"); // TODO: bad code, refactor !!!
                 var org_view = component.createObject(root, {});
-                org_view.init(true)
+                org_view.init(true, true)
                 org_view.organizationPicked.connect(organizationPicked)
                 pageStack.push({item:org_view, destroyOnPop:true})
             }
