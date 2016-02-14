@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>AddClaimPage.qml</file>
+        <file>Claims.qml</file>
+        <file>main.qml</file>
+        <file>MapPage.qml</file>
+        <file>NavigationBar.qml</file>
+        <file>Organizations.qml</file>
+        <file>Page.qml</file>
+        <file>SearchBar.qml</file>
+        <file>SettingsPage.qml</file>
+        <file>qml_controls/AndoidListItem.qml</file>
+        <file>qml_controls/CustomDialog.qml</file>
+        <file>qml_controls/FullWidthLabel.qml</file>
+        <file>qml_controls/FullWidthTextInput.qml</file>
+        <file>qml_controls/PdrkButtonStyle.qml</file>
+        <file>js/requester.js</file>
+    </qresource>
+</RCC>
