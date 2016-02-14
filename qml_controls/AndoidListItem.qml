@@ -28,16 +28,16 @@ Item {
         {
             id: textitem
             font.bold: true
-            //wrapMode: Text.WrapAnywhere
-            //elide: Text.ElideMiddle
+            width: parent.width
+            wrapMode: Text.WordWrap
         }
 
         Text
         {
             id: bottom_text_item
-            //color: "lightgray"
             visible: text !== ""
-            wrapMode: Text.WrapAnywhere
+            wrapMode: Text.WordWrap
+            width: parent.width
         }
     }
 
