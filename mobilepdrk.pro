@@ -35,3 +35,6 @@ android {
         qml_controls/PdrkButtonStyle.qml \
         qml_controls/CustomDialog.qml
 }
+
+DISTFILES += \
+    ClaimTypePage.qml

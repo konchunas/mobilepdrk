@@ -12,7 +12,7 @@ Page {
     property bool returnOnOrgClick: false
     property bool showAllItems: false
 
-    signal organizationPicked(int org_id, string org_name)
+    signal organizationPicked(int org_id, string org_name, string org_type)
 
     Rectangle {
         anchors.fill: parent
@@ -36,7 +36,7 @@ Page {
             onClicked:
             {
                 claimsPage.init(orgID)
-                organizationPicked(orgID, orgName)
+                organizationPicked(orgID, orgName, orgType)
                 if (!returnOnOrgClick) { // TODO: refactor this
                     pageStack.push(claimsPage)
                 } else {
@@ -62,8 +62,9 @@ Page {
             orgs_model.append({
                 "title_bottom" : json[org].name,
                 "orgID" : json[org].id,
-                "orgName" : json[org].name
-            })
+                "orgName" : json[org].name,
+                "orgType" : json[org].org_type
+             })
         }
     }
 

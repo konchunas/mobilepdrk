@@ -12,18 +12,31 @@ Page
     property bool orgPicked: false // TODO: use this for test before send
     property int orgId
     property string orgName
+    property string orgType
+
+    property int claimType
+    property string claimName
 
     Rectangle
     {
         anchors.fill: parent
     }
 
-    function organizationPicked(org_id, org_name) {
+    function organizationPicked(org_id, org_name, org_type) {
         org_button.text_bottom = org_name;
 
         orgPicked = true
         orgId = org_id
         orgName = org_name
+        orgType = org_type
+    }
+
+    function claimPicked(claimType, claimName) {
+        claimButton.text_bottom = claimName;
+
+        claimType = claimType
+        claimName = claimName
+        pageStack.pop();
     }
 
     Column
@@ -65,10 +78,18 @@ Page
             height: parent.height * 0.1
         }
 
-        FullWidthTextInput
+        AndoidListItem
         {
-            id: claimTextInput
-            height: parent.height * 0.1
+            id: claimButton
+            text_bottom: qsTr("Choose claim type")
+            onClicked:
+            {
+                var component = Qt.createComponent("ClaimTypePage.qml");
+                var claimTypePage = component.createObject(root, {});
+                claimTypePage.init(orgType)
+                claimTypePage.claimPicked.connect(claimPicked)
+                pageStack.push({item:claimTypePage, destroyOnPop:true})
+            }
         }
 
         FullWidthLabel
@@ -101,7 +122,7 @@ Page
                         "live" : false,
                         "organization" : orgId,
                         "servant" : servantTextInput.text,
-                        "claim_type" : 1 // TODO: add other claim types
+                        "claim_type" : claimType // TODO: add other claim types
                     }
                     var json_str = JSON.stringify(obj)
                     Requester.postRequest("http://test.acts.pp.ua:8000/api/v1/claims/",
@@ -124,5 +145,4 @@ Page
             }
         }
     }
-
 }
