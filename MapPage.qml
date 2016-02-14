@@ -68,7 +68,7 @@ Page
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked:
         {
-            organizationsPage.init("showAll")
+            organizationsPage.init(false)
             pageStack.push(organizationsPage)
         }
     }

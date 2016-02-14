@@ -9,6 +9,10 @@ Page {
     caption: qsTr("Organizations")
     property string org_json_name: ""
 
+    property bool returnOnOrgClick: false
+
+    signal organizationPicked(int org_id, string org_name)
+
     Rectangle {
         anchors.fill: parent
         //color: "green"
@@ -31,7 +35,12 @@ Page {
             onClicked:
             {
                 claimsPage.init(orgID)
-                pageStack.push(claimsPage)
+                organizationPicked(orgID, orgName)
+                if (!returnOnOrgClick) { // TODO: refactor this
+                    pageStack.push(claimsPage)
+                } else {
+                    pageStack.pop()
+                }
             }
         }
     }
@@ -50,7 +59,8 @@ Page {
             console.log(JSON.stringify(json[org]))
             orgs_model.append({
                 "title_bottom" : json[org].name,
-                "orgID": json[org].id
+                "orgID" : json[org].id,
+                "orgName" : json[org].name
             })
         }
     }
@@ -59,8 +69,10 @@ Page {
         console.log("Organizations: Error")
     }
 
-    function init() {
-        var url = "http://192.168.1.180:8000/api/v1/organizations";
-        Requester.request(url, onOrgsReceiveOk, onOrgsReceiveError);
+    function init(return_on_org_click) {
+        var url = "http://test.acts.pp.ua:8000/api/v1/organizations"
+
+        Requester.request(url, onOrgsReceiveOk, onOrgsReceiveError)
+        returnOnOrgClick = return_on_org_click
     }
 }

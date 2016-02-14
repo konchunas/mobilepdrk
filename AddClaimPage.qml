@@ -9,10 +9,22 @@ Page
     id: root
     caption: qsTr("Add claim")
 
+    property bool orgPicked: false // TODO: use this for test before send
+    property int orgId
+    property string orgName
+
     Rectangle
     {
         anchors.fill: parent
         color: "purple"
+    }
+
+    function organizationPicked(org_id, org_name) {
+        org_button.text = org_name;
+
+        orgPicked = true
+        orgId = org_id
+        orgName = org_name
     }
 
     Column
@@ -24,10 +36,16 @@ Page
             height: parent.height * 0.1
         }
 
-        FullWidthTextInput
-        {
-            id: organizationTextInput
-            height: parent.height * 0.1
+        AndoidListItem {
+            id: org_button
+            text: qsTr("Choose organization")
+            onClicked: {
+                var component = Qt.createComponent("Organizations.qml"); // TODO: bad code, refactor !!!
+                var org_view = component.createObject(root, {});
+                org_view.init(true)
+                org_view.organizationPicked.connect(organizationPicked)
+                pageStack.push({item:org_view, destroyOnPop:true})
+            }
         }
 
         FullWidthLabel
@@ -82,17 +100,16 @@ Page
                     var obj = {
                         "text" : claimText.text,
                         "live" : false,
-                        "organization" : organizationTextInput.text,
+                        "organization" : orgId,
                         "servant" : servantTextInput.text,
                         "claim_type" : 1 // TODO: add other claim types
                     }
                     var json_str = JSON.stringify(obj)
-                    Requester.postRequest("http://192.168.1.180:8000/api/v1/claims/",
+                    Requester.postRequest("http://test.acts.pp.ua:8000/api/v1/claims/",
                                       onClaimsReceiveOk,
                                       onClaimsReceiveError,
                                       json_str)
                 }
-
 
                 function onClaimsReceiveOk (json)
                 {
@@ -108,6 +125,5 @@ Page
             }
         }
     }
-
 
 }
