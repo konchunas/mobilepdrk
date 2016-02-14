@@ -17,5 +17,7 @@ Item
     {
         id: text_input
         anchors.fill: parent
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
     }
 }
