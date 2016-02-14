@@ -39,42 +39,39 @@ ApplicationWindow
     property alias addClaimPage: addClaimPage
     property alias dialogAddClaimOK: dialog_add_claim_ok
 
+    Claims
+    {
+        id: claimsPageView
+    }
+    AddClaimPage
+    {
+        id: addClaimPage
+    }
+    Organizations
+    {
+        id: organizationssPageView
+    }
+    SettingsPage
+    {
+        id: settingsPage
+    }
+
     StackView
     {
         id: mainStackView
         anchors.fill: parent
-        initialItem : mapPage
+        initialItem :
+            MapPage
+            {
+                id: mapPage
+            }
 
         Keys.onReleased: if (event.key === Qt.Key_Back)
                          {
                              mainStackView.pop();
                              event.accepted = true;
                          }
-        SettingsPage
-        {
-            id: settingsPage
-        }
-        MapPage
-        {
-            id: mapPage
-        }
-        Claims
-        {
-            id: claimsPageView
-        }
-        AddClaimPage
-        {
-            id: addClaimPage
-        }
-        Organizations
-        {
-            id: organizationssPageView
-        }
-        Rectangle
-        {
-            id: rectangle
-            color: "blue";
-        }
+
     }
 
     CustomDialog {
