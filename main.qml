@@ -1,14 +1,20 @@
-import QtQuick 2.5
-import QtQuick.Controls 1.4
+import QtQuick 2.4
+import QtQuick.Controls 1.3
 import QtQuick.Dialogs 1.2
 
 import "qml_controls"
 
 ApplicationWindow
 {
+    id: applicationWindow
+
+    property alias windowHeight: applicationWindow.height
+    property alias windowWidth: applicationWindow.width
+    property int fontSize: width / 15
     visible: true
     width: 270
     height: 480
+
     title: qsTr("PDRK")
 
     toolBar: mainStackView.currentItem.caption === "Map" ? searchBar : navigationBar

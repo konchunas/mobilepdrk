@@ -10,7 +10,7 @@ Page {
 
     Rectangle {
         anchors.fill: parent
-        color: "green"
+        //color: "green"
     }
 
     ListModel {
@@ -35,8 +35,8 @@ Page {
         claims_model.clear()
         for (var i = 0; i < len; i++) {
             claims_model.append({
-                "title" : json[i].text,
-                "title_bottom" : json[i].servant
+                "title" : json[i].servant,
+                "title_bottom" : json[i].text
             })
         }
     }

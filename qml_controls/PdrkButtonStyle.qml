@@ -6,10 +6,11 @@ ButtonStyle
     background:
         Rectangle
         {
-            implicitWidth: 100
+            implicitWidth: 50
             implicitHeight: 25
             color: control.activeFocus ? "#111" : "#333"
             border.width: control.activeFocus ? 2 : 1
             radius: 4
         }
+
 }

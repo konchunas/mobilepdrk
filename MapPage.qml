@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick.Controls 1.3
 
 import QtLocation 5.3
 
@@ -68,7 +68,7 @@ Page
         anchors.horizontalCenter: parent.horizontalCenter
         onClicked:
         {
-            organizationsPage.init("21citkyivs")
+            organizationsPage.init("showAll")
             pageStack.push(organizationsPage)
         }
     }
