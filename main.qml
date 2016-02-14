@@ -66,11 +66,16 @@ ApplicationWindow
                 id: mapPage
             }
 
-        Keys.onReleased: if (event.key === Qt.Key_Back)
-                         {
-                             mainStackView.pop();
-                             event.accepted = true;
-                         }
+        Component.onCompleted: {
+            mainStackView.forceActiveFocus() // MARK: hack
+        }
+
+        Keys.onReleased:
+            if (event.key === Qt.Key_Back)
+            {
+                mainStackView.pop();
+                event.accepted = true; // TODO: assign false on back pressed on last view
+            }
 
     }
 
