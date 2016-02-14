@@ -14,7 +14,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        color: "#11ffffff"
+        color: "#fffbd9"
         visible: mouse.pressed
     }
 
@@ -23,6 +23,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 30
+        anchors.rightMargin: 30
 
         Text
         {
@@ -41,12 +42,14 @@ Item {
         }
     }
 
-    /*Image {
+    Image {
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        //anchors.rightMargin: 5
         anchors.verticalCenter: parent.verticalCenter
         source: "../images/navigation_next_item.png"
-    }*/
+
+        scale: 0.5
+    }
 
     MouseArea {
         id: mouse
