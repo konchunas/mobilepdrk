@@ -52,7 +52,7 @@ Page
             id: org_button
             text_bottom: qsTr("Choose organization")
             onClicked: {
-                var component = Qt.createComponent("Organizations.qml"); // TODO: bad code, refactor !!!
+                var component = Qt.createComponent("Organizations.qml");
                 var org_view = component.createObject(root, {});
                 org_view.init(true, true)
                 org_view.organizationPicked.connect(organizationPicked)

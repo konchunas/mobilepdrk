@@ -35,6 +35,12 @@ Page
         zoomLevel: 14.0
 
         gesture.enabled: true
+        gesture.activeGestures: MapGestureArea.ZoomGesture | MapGestureArea.PanGesture
+
+        MouseArea
+        {
+            anchors.fill: parent
+        }
     }
 
     Button

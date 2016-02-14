@@ -9,6 +9,7 @@ Item {
 
     property alias text: textitem.text
     property alias text_bottom: bottom_text_item.text
+    property bool showArrow: false
     property int miscData : -1
     signal clicked
 
@@ -47,7 +48,7 @@ Item {
         //anchors.rightMargin: 5
         anchors.verticalCenter: parent.verticalCenter
         source: "../images/navigation_next_item.png"
-
+        visible: showArrow
         scale: 0.5
     }
 

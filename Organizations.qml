@@ -9,7 +9,7 @@ Page {
     caption: qsTr("Organizations")
     property string org_json_name: ""
 
-    property bool returnOnOrgClick: false
+    property bool viewAsPicker: false
     property bool showAllItems: false
 
     signal organizationPicked(int org_id, string org_name, string org_type)
@@ -32,12 +32,13 @@ Page {
         {
             text_bottom: title_bottom
             miscData: orgID
+            showArrow: !viewAsPicker
 
             onClicked:
             {
                 claimsPage.init(orgID)
                 organizationPicked(orgID, orgName, orgType)
-                if (!returnOnOrgClick) { // TODO: refactor this
+                if (!viewAsPicker) { // TODO: refactor this
                     pageStack.push(claimsPage)
                 } else {
                     pageStack.pop()
@@ -72,11 +73,11 @@ Page {
         console.log("Organizations: Error")
     }
 
-    function init(return_on_org_click, show_all_items) {
+    function init(view_as_picker, show_all_items) {
         var url = "http://test.acts.pp.ua:8000/api/v1/organizations"
 
         Requester.request(url, onOrgsReceiveOk, onOrgsReceiveError)
-        returnOnOrgClick = return_on_org_click
+        viewAsPicker = view_as_picker
         showAllItems = show_all_items || showAllItems
     }
 }
