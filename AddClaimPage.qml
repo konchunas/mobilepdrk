@@ -34,8 +34,8 @@ Page
     function claimPicked(claimType, claimName) {
         claimButton.text_bottom = claimName;
 
-        claimType = claimType
-        claimName = claimName
+        root.claimType = claimType
+        root.claimName = claimName
         pageStack.pop();
     }
 
