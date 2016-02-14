@@ -10,6 +10,7 @@ Page {
     property string org_json_name: ""
 
     property bool returnOnOrgClick: false
+    property bool showAllItems: false
 
     signal organizationPicked(int org_id, string org_name)
 
@@ -53,8 +54,9 @@ Page {
 
         for (var org in json)
         {
-            if (json[org].total_claims === 0) //TODO: do not hide int add claim state
-                continue
+            if (!showAllItems)
+                if (json[org].total_claims === 0) //TODO: do not hide int add claim state
+                    continue
 
             console.log(JSON.stringify(json[org]))
             orgs_model.append({
@@ -69,10 +71,11 @@ Page {
         console.log("Organizations: Error")
     }
 
-    function init(return_on_org_click) {
+    function init(return_on_org_click, show_all_items) {
         var url = "http://test.acts.pp.ua:8000/api/v1/organizations"
 
         Requester.request(url, onOrgsReceiveOk, onOrgsReceiveError)
         returnOnOrgClick = return_on_org_click
+        showAllItems = show_all_items || showAllItems
     }
 }
