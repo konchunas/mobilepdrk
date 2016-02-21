@@ -2,8 +2,11 @@ import QtQuick 2.0
 import QtQuick.Controls 1.3
 
 import QtLocation 5.3
+import QtPositioning 5.3
 
 import "qml_controls"
+
+import "js/requester.js" as Requester
 
 Page
 {
@@ -41,6 +44,52 @@ Page
         {
             anchors.fill: parent
         }
+
+        gesture.onPanFinished:
+        {
+            var centerCoordString = map.center.latitude + "," + map.center.longitude
+            console.log("centerCoordString " + centerCoordString)
+            Requester.request(
+                        "http://test.acts.pp.ua:8000/api/v1/get_nearest_polygons/4/100/" + centerCoordString,
+                        onPolygonsReceiveOk,
+                        onPolygonsReceiveError
+            );
+
+            //distance of 100 is just a magic number here ^^^
+
+        }
+    }
+
+    function onPolygonsReceiveOk (json)
+    {
+        console.log(JSON.stringify(json))
+
+        map.clearMapItems()
+        for (var point in json)
+        {
+            var latitude = json[point].properties.centroid[0]
+            var longitude = json[point].properties.centroid[1]
+            console.log("centroid at " + point + " " + latitude + "," + longitude)
+
+            var name = json[point].properties.organizations[0].name
+
+            var markerComponent = Qt.createComponent("qml_controls/OrganizationMarker.qml");
+            if (markerComponent.status == Component.Ready)
+            {
+                var markerObject = markerComponent.createObject(map);
+                map.addMapItem(markerObject)
+                markerObject.coordinate = QtPositioning.coordinate(latitude, longitude)
+                markerObject.text = name
+            }
+            else
+            {
+                console.log(markerComponent.errorString())
+            }
+        }
+    }
+
+    function onPolygonsReceiveError () {
+        console.log("Claims: Error")
     }
 
     Button
