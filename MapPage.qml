@@ -27,6 +27,8 @@ Page
     {
         id: map
 
+        property real previousZoomLevel
+
         plugin: osmPlugin
 
         anchors.fill: parent
@@ -47,16 +49,43 @@ Page
 
         gesture.onPanFinished:
         {
+            requestNearestMarkers()
+            //distance of 100 is just a magic number here ^^^
+
+        }
+
+        onZoomLevelChanged:
+        {
+            var prevLevel = map.getNearestPolygonLevel(map.previousZoomLevel)
+            var currentLevel = map.getNearestPolygonLevel(map.zoomLevel)
+
+            if (prevLevel !== currentLevel)
+            {
+                map.requestNearestMarkers()
+            }
+
+            map.previousZoomLevel = map.zoomLevel
+            console.log("zoom level is " + map.zoomLevel)
+        }
+
+        function requestNearestMarkers()
+        {
+            var currentLevel = getNearestPolygonLevel(map.zoomLevel)
+
             var centerCoordString = map.center.latitude + "," + map.center.longitude
             console.log("centerCoordString " + centerCoordString)
             Requester.request(
-                        "http://test.acts.pp.ua:8000/api/v1/get_nearest_polygons/4/100/" + centerCoordString,
+                        "http://test.acts.pp.ua:8000/api/v1/get_nearest_polygons/"+ currentLevel + "/100/" + centerCoordString,
                         onPolygonsReceiveOk,
                         onPolygonsReceiveError
             );
+        }
 
-            //distance of 100 is just a magic number here ^^^
-
+        function getNearestPolygonLevel(zoomLevel)
+        {
+            if (zoomLevel < 12)
+                return 3
+            return 4
         }
     }
 
@@ -69,9 +98,13 @@ Page
         {
             var latitude = json[point].properties.centroid[0]
             var longitude = json[point].properties.centroid[1]
-            console.log("centroid at " + point + " " + latitude + "," + longitude)
+            //console.log("centroid at " + point + " " + latitude + "," + longitude)
 
-            var name = json[point].properties.organizations[0].name
+            var organization = json[point].properties.organizations[0]
+
+            var name = json[point].properties.ID
+            //var name = organization.name
+            //var orgId = organization.id
 
             var markerComponent = Qt.createComponent("qml_controls/OrganizationMarker.qml");
             if (markerComponent.status == Component.Ready)
@@ -80,6 +113,7 @@ Page
                 map.addMapItem(markerObject)
                 markerObject.coordinate = QtPositioning.coordinate(latitude, longitude)
                 markerObject.text = name
+                //markerObject.organizationId = orgId
             }
             else
             {
